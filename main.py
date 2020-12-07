@@ -1,8 +1,7 @@
 class produto:
     ID = 0
     nome = ' '
-    preco = 0
-
+    preco = 0.00
 
 lista = []
 
@@ -11,7 +10,7 @@ def Novoproduto():
     nc = produto()
     nc.ID = int(input('Digite um ID: '))
     nc.nome = input('Digite Nome: ')
-    nc.preco = int(input('Digite Preco: '))
+    nc.preco = float(input('Digite Precoooo: '))
     print()
     return nc
 
@@ -23,7 +22,7 @@ while True:
     if opc == 1:
         banco = (Novoproduto())
         lista.append(banco)
-        print('Cadastrado com sucesso! \nID: {} \nCliente: {} \nConta: {} '.format(banco.ID, banco.nome, banco.preco))
+        print('Cadastrado com sucesso! \nID: {} \nNome: {} \nPreco: {} '.format(banco.ID, banco.nome, banco.preco))
         print('-' * 25)
     elif opc == 2:
         consulta = int(input('Digite o ID para consulta:'))
@@ -33,6 +32,11 @@ while True:
                 print('Resultado Consulta:')
                 print('Nome: {} \nPreco: {}\n'.format(lista[i].nome,lista[i].preco))
                 print('-' * 25)
+               # op2 = int(input('Atualizar Produto, digite 3\nDeletar Produto, digite 4 \nOpção: '))
+
+
+
                 break
             else:
                 print('Não contém')
+
