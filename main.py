@@ -3,40 +3,48 @@ class produto:
     nome = ' '
     preco = 0.00
 
+
 lista = []
+cont_id = 0
 
 
-def Novoproduto():
+def Novoproduto(cont_id):
     nc = produto()
-    nc.ID = int(input('Digite um ID: '))
-    nc.nome = input('Digite Nome: ')
-    nc.preco = float(input('Digite Precoooo: '))
+    nc.ID = cont_id
+    nc.nome = input('Digite Nome Produto: ')
+    nc.preco = float(input('Digite Preco Produto: '))
     print()
     return nc
 
 
 while True:
 
-    opc = int(input('Cadastrar Produto, digite 1\nConsultar Produto, digite 2 \nOpção: '))
-    print()
+    opc = int(input('=' * 30 + '\nCadastrar Produto, Digite 1\nConsultar Produto, Digite 2\n' + '=' * 30 + '\nOpção:'))
+
     if opc == 1:
-        banco = (Novoproduto())
+        cont_id = cont_id + 1
+        banco = (Novoproduto(cont_id))
         lista.append(banco)
         print('Cadastrado com sucesso! \nID: {} \nNome: {} \nPreco: {} '.format(banco.ID, banco.nome, banco.preco))
-        print('-' * 25)
+
     elif opc == 2:
-        consulta = int(input('Digite o ID para consulta:'))
+        consulta = int(input('Digite o ID para Consulta:'))
         for i in range(len(lista)):
             if lista[i].ID == consulta:
-                print('-' * 25)
-                print('Resultado Consulta:')
-                print('Nome: {} \nPreco: {}\n'.format(lista[i].nome,lista[i].preco))
-                print('-' * 25)
-               # op2 = int(input('Atualizar Produto, digite 3\nDeletar Produto, digite 4 \nOpção: '))
 
+                print('\nResultado Consulta:')
+                print('Nome: {} \nPreco: {}'.format(lista[i].nome, lista[i].preco))
 
-
+                opc2 = int(
+                    input(
+                        '*' * 30 + '\nAtualizar Produto, Digite 3\nDeletar Produto, Digite 4 \nContinuar, digite 0\n' + '*' * 30 + ' \nOpção:'))
+                if opc2 == 3:
+                    lista[i].nome = input("Novo nome:")
+                    lista[i].preco = float(input("Novo preco:"))
+                    print("Atualizado!!!")
+                elif opc2 == 4:
+                    lista.pop(i)
+                    print("Deletado!!!")
                 break
-            else:
-                print('Não contém')
-
+        else:
+            print('Não existe produto')
