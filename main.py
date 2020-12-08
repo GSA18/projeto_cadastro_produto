@@ -2,7 +2,7 @@ class produto:
     ID = 0
     nome = ' '
     preco = 0.00
-
+    desc=' '
 
 lista = []
 cont_id = 0
@@ -13,6 +13,7 @@ def Novoproduto(cont_id):
     nc.ID = cont_id
     nc.nome = input('Digite Nome Produto: ')
     nc.preco = float(input('Digite Preco Produto: '))
+    nc.desc=input('Descricao: ')
     print()
     return nc
 
@@ -35,14 +36,12 @@ while True:
                 print('\nResultado Consulta:')
                 print('Nome: {} \nPreco: {}'.format(lista[i].nome, lista[i].preco))
 
-                opc2 = int(
-                    input(
-                        '*' * 30 + '\nAtualizar Produto, Digite 3\nDeletar Produto, Digite 4 \nContinuar, digite 0\n' + '*' * 30 + ' \nOpção:'))
-                if opc2 == 3:
+                opc2 =input('*' * 30 + '\nAtualizar Produto, Digite u\nDeletar Produto, Digite d \nContinuar, digite 0\n' + '*' * 30 + ' \nOpção:')
+                if opc2 == u:
                     lista[i].nome = input("Novo nome:")
                     lista[i].preco = float(input("Novo preco:"))
                     print("Atualizado!!!")
-                elif opc2 == 4:
+                elif opc2 == d:
                     lista.pop(i)
                     print("Deletado!!!")
                 break
