@@ -1,3 +1,5 @@
+import re
+
 class produto:
     ID = 0
     nome = ' '
@@ -8,40 +10,62 @@ class produto:
     desc = ' '
     categoria = ' '
 
+    def get_id_prod(self):
+        return self.ID
+
+    def set_id_prod(self,id):
+        self.ID = id
+
     def get_name(self):
         return self.nome
 
     def set_name(self, name):
+        while len(name)<=4:
+            name=input('Nome tem ter mais que 4 caracteres:\n')
         self.nome = name
 
     def get_preco(self):
         return self.preco
 
     def set_preco(self,price):
-        self.preco=price
+        r=re.compile("[0-9]*[.]?[0-9]*\Z")
+        while not r.match(price):
+            price=input('Digite numeros inteiros ou decimais:\n')
+        self.preco=float(price)
 
     def get_peso(self):
         return self.peso
 
     def set_peso(self,p):
+        r = re.compile("[0-9]*[.]?[0-9]*\Z")
+        while not r.match(p):
+            p = input('Digite numeros inteiros ou decimais:\n')
         self.peso=p
 
     def get_largura(self):
         return self.largura
 
     def set_largura(self,l):
+        r = re.compile("[0-9]*[.]?[0-9]*\Z")
+        while not r.match(l):
+            l = input('Digite numeros inteiros ou decimais:\n')
         self.largura=l
 
     def get_altura(self):
         return self.altura
 
     def set_altura(self, a):
+        r = re.compile("[0-9]*[.]?[0-9]*\Z")
+        while not r.match(a):
+           a= input('Digite numeros inteiros ou decimais:\n')
         self.altura= a
 
     def get_desc(self):
         return self.desc
 
     def set_desc(self, d):
+        while(len(d)<=20):
+            d=input('Descricao tem que ter no minimo 20 caracteres:\n')
         self.desc = d
 
     def get_categora(self):
@@ -74,20 +98,20 @@ opc = 1
 
 def Novoproduto(cont_id):
     np = produto()
-    np.ID = cont_id
 
+    np.set_id_prod(cont_id)
     nome = input('Digite Nome Produto: ')
     np.set_name(nome)
-    preco=float(input('Digite Preco Produto R$(0.00): '))
+    preco=input('Digite Preco Produto R$(0.00): ')
     np.set_preco(preco)
-    peso = float(input('Peso g (0.00): '))
+    peso = input('Peso g (0.00): ')
     np.set_peso(peso)
-    largura = float(input('Largura cm (0.00):'))
+    largura = input('Largura cm (0.00):')
     np.set_largura(largura)
-    altura = float(input('Altura cm (0.00):'))
+    altura = input('Altura cm (0.00):')
     np.set_altura(altura)
-
-    np.desc = input('Descricao: ')
+    desc = input('Descricao: ')
+    np.set_desc(desc)
 
     if len(lista_cat) != 0:
         print("Categorias:")
