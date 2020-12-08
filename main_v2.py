@@ -56,6 +56,13 @@ class categoria:
     ID_cat = 0
     nome_cat = ' '
 
+    def get_nome_categoria(self):
+        return self.nome_cat
+
+    def set_nome_categoria(self,n):
+        self.nome_cat=n
+
+
 
 lista_prod = []
 lista_cat = []
@@ -98,7 +105,8 @@ def Novoproduto(cont_id):
 def Novacategoria(cont_id2):
     nc = categoria()
     nc.ID_cat = cont_id2
-    nc.nome_cat = input('Nova Categoria: ')
+    nome_cat = input('Nova Categoria: ')
+    nc.set_nome_categoria(nome_cat)
     return nc
 
 
