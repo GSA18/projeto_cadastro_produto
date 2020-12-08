@@ -8,6 +8,49 @@ class produto:
     desc = ' '
     categoria = ' '
 
+    def get_name(self):
+        return self.nome
+
+    def set_name(self, name):
+        self.nome = name
+
+    def get_preco(self):
+        return self.preco
+
+    def set_preco(self,price):
+        self.preco=price
+
+    def get_peso(self):
+        return self.peso
+
+    def set_peso(self,p):
+        self.peso=p
+
+    def get_largura(self):
+        return self.largura
+
+    def set_largura(self,l):
+        self.largura=l
+
+    def get_altura(self):
+        return self.altura
+
+    def set_altura(self, a):
+        self.altura= a
+
+    def get_desc(self):
+        return self.desc
+
+    def set_desc(self, d):
+        self.desc = d
+
+    def get_categora(self):
+        return self.categoria
+
+    def set_categoria(self, c):
+        self.categoria = c
+
+
 
 class categoria:
     ID_cat = 0
@@ -25,11 +68,18 @@ opc = 1
 def Novoproduto(cont_id):
     np = produto()
     np.ID = cont_id
-    np.nome = input('Digite Nome Produto: ')
-    np.preco = float(input('Digite Preco Produto R$(0.00): '))
-    np.peso = float(input('Peso g (0.00): '))
-    np.largura = float(input('Largura cm (0.00):'))
-    np.altura = float(input('Altura cm (0.00):'))
+
+    nome = input('Digite Nome Produto: ')
+    np.set_name(nome)
+    preco=float(input('Digite Preco Produto R$(0.00): '))
+    np.set_preco(preco)
+    peso = float(input('Peso g (0.00): '))
+    np.set_peso(peso)
+    largura = float(input('Largura cm (0.00):'))
+    np.set_largura(largura)
+    altura = float(input('Altura cm (0.00):'))
+    np.set_altura(altura)
+
     np.desc = input('Descricao: ')
 
     if len(lista_cat) != 0:
@@ -37,10 +87,10 @@ def Novoproduto(cont_id):
         for i in range(len(lista_cat)):
             print("{}){}".format(lista_cat[i].ID_cat, lista_cat[i].nome_cat))
             j = int(input('Escolha o numero da categoria: '))
-            np.categoria = lista_cat[j - 1].nome_cat
+            np.set_categoria(lista_cat[j - 1].nome_cat)
     else:
         print("Sem Categoria Cadastradas")
-        np.categoria = 'Sem Categoria'
+        np.set_categoria('Sem Categoria')
 
     return np
 
@@ -72,7 +122,8 @@ while opc != 0:
 
                 print('\nResultado Consulta:')
                 print('Nome: {} \nPreco: {}\n Peso: {} \nLargura: {} \n Altura: {} \nDescricao: {} \nCategoria: {}'
-                      .format(lista_prod[i].nome, lista_prod[i].preco,lista_prod[i].peso,lista_prod[i].largura,lista_prod[i].altura,lista_prod[i].desc,lista_prod[i].categoria))
+                      .format(lista_prod[i].nome, lista_prod[i].preco,lista_prod[i].peso,lista_prod[i].largura,
+                              lista_prod[i].altura,lista_prod[i].desc,lista_prod[i].categoria))
 
                 opc2 = input(
                     '*' * 30 + '\nAtualizar Produto, Digite a\nDeletar Produto, Digite d \nContinuar, digite 0\n' + '*' * 30 + ' \nOpção:')
