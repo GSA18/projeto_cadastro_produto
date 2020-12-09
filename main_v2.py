@@ -80,6 +80,12 @@ class categoria:
     ID_cat = 0
     nome_cat = ' '
 
+    def get_id_cat(self):
+        return self.ID_cat
+
+    def set_id_cat(self,i):
+        self.ID_cat=i
+
     def get_nome_categoria(self):
         return self.nome_cat
 
@@ -117,10 +123,10 @@ def Novoproduto(cont_id):
         print("Categorias:")
         for i in range(len(lista_cat)):
             print("{}){}".format(lista_cat[i].ID_cat, lista_cat[i].nome_cat))
-            j = int(input('Escolha o numero da categoria: '))
-            np.set_categoria(lista_cat[j - 1].nome_cat)
+
+        j = int(input('Escolha o numero da categoria: '))
+        np.set_categoria(lista_cat[j - 1].nome_cat)
     else:
-        print("Sem Categoria Cadastradas")
         np.set_categoria('Sem Categoria')
 
     return np
@@ -128,7 +134,8 @@ def Novoproduto(cont_id):
 
 def Novacategoria(cont_id2):
     nc = categoria()
-    nc.ID_cat = cont_id2
+
+    nc.set_id_cat(cont_id2)
     nome_cat = input('Nova Categoria: ')
     nc.set_nome_categoria(nome_cat)
     return nc
@@ -160,9 +167,32 @@ while opc != 0:
                 opc2 = input(
                     '*' * 30 + '\nAtualizar Produto, Digite a\nDeletar Produto, Digite d \nContinuar, digite 0\n' + '*' * 30 + ' \nOpção:')
                 if opc2 == 'a':
-                    lista_prod[i].nome = input("Novo nome:")
-                    lista_prod[i].preco = float(input("Novo preco:"))
-                    lista_prod[i].desc = input("Nova descricao:")
+                    np_atu = produto()
+
+                    np_atu.set_name(input("Novo nome:"))
+                    lista_prod[i].nome = np_atu.get_name()
+                    np_atu.set_preco(input("Novo preco:"))
+                    lista_prod[i].preco = np_atu.get_preco()
+                    np_atu.set_peso(input('Novo Peso:'))
+                    lista_prod[i].peso=np_atu.get_peso()
+                    np_atu.set_largura(input('Nova Largura:'))
+                    lista_prod[i].largura=np_atu.get_largura()
+                    np_atu.set_altura(input('Nova Altura:'))
+                    lista_prod[i].altura=np_atu.get_altura()
+                    np_atu.set_desc(input('Nova Descricao:'))
+                    lista_prod[i].desc = np_atu.get_desc()
+                    if len(lista_cat) != 0:
+                        print("Categorias:")
+                        for k in range(len(lista_cat)):
+                            print("{}){}".format(lista_cat[k].ID_cat, lista_cat[k].nome_cat))
+
+                        j = int(input('Escolha o numero da nova categoria: '))
+                        np_atu.set_categoria(lista_cat[j - 1].nome_cat)
+                    else:
+                        print("Sem Categoria Cadastradas")
+                        np_atu.set_categoria('Sem Categoria')
+
+                    lista_prod[i].categoria = np_atu.get_categora()
                     print("Atualizado!!!")
                 elif opc2 == 'd':
                     lista_prod.pop(i)
